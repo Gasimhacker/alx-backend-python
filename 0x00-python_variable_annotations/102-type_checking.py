@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
 A module that defines a function that
-returns a value from a dictionary safely
+returns a list repeated based on the factor variable
 """
 from typing import Tuple, List, TYPE_CHECKING
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """Return the list repeated based on the factor variable"""
     zoomed_in: List = [
         item for item in lst
         for i in range(int(factor))
