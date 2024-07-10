@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
-"""
-3. Tasks
-"""
+"""A module that creates an async task"""
 import asyncio
-
-
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-def task_wait_random(max_delay: int) -> asyncio.Task:
-    """
-    that takes an integer max_delay and returns a asyncio.Task.
-    """
+def task_wait_random(max_delay: int) -> object:
+    """Create a task object"""
     return asyncio.create_task(wait_random(max_delay))
