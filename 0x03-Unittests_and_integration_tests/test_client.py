@@ -11,17 +11,18 @@ class TestGithubOrgClient(unittest.TestCase):
     """Test the GithubOrgClient.org method"""
 
     @parameterized.expand([
-        ("google", {'a': 1}),
-        ("abc", {'a': 1}),
+        ("google",),
+        ("abc",),
     ])
     @patch('client.get_json')
-    def test_org(self, org_name: str, expected: dict,
-                 mock_method: Mock) -> None:
+    def test_org(self, org_name: str, mock_method: Mock) -> None:
         """test that org method returns the expected result"""
-        mock_method.return_value = {'a': 1}
+        expected = {"payload": True}
+        url = f"https://api.github.com/orgs/{org_name}"
+        mock_method.return_value = expected
+
         client = GithubOrgClient(org_name)
         self.assertEqual(client.org, expected)
-        url = f"https://api.github.com/orgs/{org_name}"
         mock_method.assert_called_once_with(url)
 
 
