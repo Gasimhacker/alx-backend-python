@@ -23,7 +23,3 @@ class TestGithubOrgClient(unittest.TestCase):
         client = GithubOrgClient(org_name)
         self.assertEqual(client.org, expected)
         mock_method.assert_called_once_with(url)
-
-
-if __name__ == '__main__':
-    unittest.main()
