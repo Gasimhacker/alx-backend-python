@@ -13,12 +13,11 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google",),
         ("abc",),
     ])
-    @patch('client.get_json')
+    @patch('client.get_json', return_value={"payload": True})
     def test_org(self, org_name: str, mock_method: Mock) -> None:
         """test that org method returns the expected result"""
         expected = {"payload": True}
         url = f"https://api.github.com/orgs/{org_name}"
-        mock_method.return_value = expected
 
         client = GithubOrgClient(org_name)
         self.assertEqual(client.org, expected)
