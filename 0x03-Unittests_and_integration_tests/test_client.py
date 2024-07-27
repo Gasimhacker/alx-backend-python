@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Execute a test multiple times with parameterized"""
 import unittest
-import requests
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch
 from client import GithubOrgClient
 from parameterized import parameterized
 
