@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Execute a test multiple times with parameterized"""
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, PropertyMock
 from client import GithubOrgClient
 from parameterized import parameterized
 
@@ -23,3 +23,12 @@ class TestGithubOrgClient(unittest.TestCase):
         result = client.org
         mock_method.assert_called_once_with(url)
         self.assertEqual(result, expected)
+
+    def test_public_repos_url(self) -> None:
+        """test that public_repos_url treats org method as a property"""
+        expected = {"repos_url": "https://github.com/Mohamed/alx-backend"}
+        with patch.object(GithubOrgClient, 'org',
+                          new_callable=PropertyMock) as mock_property:
+            mock_property.return_value = expected
+            client = GithubOrgClient("google")
+            self.assertEqual(client._public_repos_url, expected["repos_url"])
